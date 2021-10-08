@@ -1,0 +1,29 @@
+<h2>Products</h2>
+
+<div *ngFor="let productx of products">
+  <h3>
+    <a [title]="productx.name + ' details'"
+    [routerLink]="['/products', productx.id]">
+      {{ productx.name }}
+    </a>
+  </h3>
+
+  <p *ngIf="productx.description">Description: {{ productx.description }}</p>
+
+  <button (click)="share()">Share</button>
+
+  <app-product-alerts [product]="productx" (notify)="onNotify()">
+    <!--Spiegazione:
+      [product]="productx": la parte tra [] è il nome della proprietà nel .ts del component figlio (product-alerts.component.ts), mentre la parte tra "" è il nome della proprietà in questo html (cioè del padre).
+      (notify)="onNotify()": binda l'oggetto notify di product-alerts (figlio) al metodo onNotify di product-list (padre)
+    
+    -->
+
+  </app-product-alerts>
+</div>
+
+<!-- 
+Copyright Google LLC. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that
+can be found in the LICENSE file at https://angular.io/license
+-->
